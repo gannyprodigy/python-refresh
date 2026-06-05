@@ -221,7 +221,7 @@ async def get_records(session: AsyncSession) -> list:
 
 ```python
 # Streaming LLM response — tokens arrive over time
-async def stream_coaching_response(message: str):
+async def stream_response(message: str):
     client = anthropic.AsyncAnthropic()
     async with client.messages.stream(
         model="claude-sonnet-4-6",

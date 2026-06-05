@@ -134,7 +134,7 @@ import httpx
 async def fetch_workouts(api_key: str) -> list[dict]:
     async with httpx.AsyncClient() as client:
         response = await client.get(
-            "https://api.hevyapp.com/v1/workouts",
+            "https://api.example.com/v1/workouts",
             headers={"api-key": api_key}
         )
         response.raise_for_status()

@@ -63,9 +63,9 @@ from enum import StrEnum   # Python 3.11+
 
 class TaskType(StrEnum):
     ROUTING  = "routing"
-    COACHING = "coaching"
-    PROFILE  = "profile"
-    PROGRAM  = "program"
+    ANALYSIS = "analysis"
+    SUMMARY  = "summary"
+    REPORT   = "report"
 
 # StrEnum members ARE strings
 TaskType.ROUTING == "routing"   # True ✅ (plain Enum would be False)
@@ -74,23 +74,22 @@ TaskType.ROUTING.upper()        # "ROUTING" — string methods work
 # Works directly in dict keys without .value
 MODEL_MAP = {
     TaskType.ROUTING:  "claude-haiku-4-5-20251001",
-    TaskType.COACHING: "claude-sonnet-4-6",
-    TaskType.PROFILE:  "claude-sonnet-4-6",
-    TaskType.PROGRAM:  "claude-opus-4-8",
+    TaskType.ANALYSIS: "claude-sonnet-4-6",
+    TaskType.SUMMARY:  "claude-sonnet-4-6",
+    TaskType.REPORT:   "claude-opus-4-8",
 }
-MODEL_MAP[TaskType.COACHING]   # "claude-sonnet-4-6"
-MODEL_MAP["coaching"]          # "claude-sonnet-4-6" — also works with StrEnum
+MODEL_MAP[TaskType.ANALYSIS]   # "claude-sonnet-4-6"
+MODEL_MAP["analysis"]          # "claude-sonnet-4-6" — also works with StrEnum
 ```
 
-From real production code:
+How this looks in a config module:
 
 ```python
-# config.py — model selection by task type
 class TaskType(StrEnum):
     ROUTING  = "routing"
-    COACHING = "coaching"
-    PROFILE  = "profile"
-    PROGRAM  = "program"
+    ANALYSIS = "analysis"
+    SUMMARY  = "summary"
+    REPORT   = "report"
 
 def model_for(task: TaskType) -> str:
     return MODEL_MAP[task]
@@ -99,7 +98,7 @@ def max_tokens_for(task: TaskType) -> int:
     return MAX_TOKENS_MAP[task]
 
 # Usage — clean, readable, typo-proof
-model = model_for(TaskType.COACHING)   # "claude-sonnet-4-6"
+model = model_for(TaskType.ANALYSIS)   # "claude-sonnet-4-6"
 ```
 
 **The `class StrengthTier(str, Enum)` pattern** — an older equivalent of `StrEnum`:
@@ -157,14 +156,14 @@ state["current_agent"]   # "receptionist"
 ```python
 from typing import TypedDict
 
-class NoteUpdateState(TypedDict, total=False):
-    transcription: str      # optional — may not be set yet
-    clinical_note: dict     # optional — set after extraction
-    drug_warnings: list[str] # optional — set after drug check
+class WorkflowState(TypedDict, total=False):
+    raw_input:   str         # optional — may not be set yet
+    parsed_data: dict        # optional — set after extraction
+    warnings:    list[str]   # optional — set after validation
 
 # Only set what you have:
-state: NoteUpdateState = {"transcription": "Patient presents with..."}
-# 'clinical_note' and 'drug_warnings' not set — no error
+state: WorkflowState = {"raw_input": "some input text"}
+# 'parsed_data' and 'warnings' not set — no error
 ```
 
 **When to use `TypedDict` vs Pydantic `BaseModel`:**
@@ -182,10 +181,10 @@ state: NoteUpdateState = {"transcription": "Patient presents with..."}
 from typing import TypedDict, Annotated
 from langgraph.graph.message import add_messages
 
-class ReceptionistState(TypedDict):
+class AgentState(TypedDict):
     messages:   Annotated[list, add_messages]  # special reducer
-    clinic_id:  str
-    patient_id: str | None
+    session_id: str
+    user_id:    str | None
     intent:     str | None
     done:       bool
 ```
@@ -200,7 +199,7 @@ class ReceptionistState(TypedDict):
 ⚡ `TypedDict` for LangGraph state — it must be a plain dict, `BaseModel` won't work  
 ⚡ `AppointmentStatus("confirmed")` to reconstruct an Enum from a database string — not `AppointmentStatus.CONFIRMED` which creates a new member  
 ⚡ `total=False` on a `TypedDict` when not all fields are always present — e.g., state that's built up incrementally across agent nodes  
-⚡ Use `Enum` members (not `.value`) in code — `TaskType.COACHING` not `"coaching"` — the type checker can catch `TaskType.COACHIGN` but not `"coachign"`
+⚡ Use `Enum` members (not `.value`) in code — `TaskType.ANALYSIS` not `"analysis"` — the type checker can catch `TaskType.ANALYSISS` but not `"analysiss"`
 
 ---
 

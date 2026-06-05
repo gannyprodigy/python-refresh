@@ -204,7 +204,7 @@ total_volume = sum(s["weight_kg"] * s["reps"] for s in exercise_sets)
 has_heavy_set = any(s["weight_kg"] > 100 for s in exercise_sets)
 ```
 
-This is real production code — from the context builder that processes workout data for the AI coach:
+Every pattern in Session 01 appears together in this 10-line block:
 ```python
 lines = ["# Recent Workouts\n"]
 for w in workouts:
@@ -277,10 +277,10 @@ from pathlib import Path
 # Path(__file__) is the current file's absolute path
 # .parent goes up one directory, / joins paths
 prompts_dir = Path(__file__).parent.parent / "prompts"
-system_prompt = (prompts_dir / "coach_system.txt").read_text()
+system_prompt = (prompts_dir / "system_prompt.txt").read_text()
 
 # Why not strings?
-# Strings: "prompts/coach_system.txt" breaks on Windows (uses backslash)
+# Strings: "prompts/system_prompt.txt" breaks on Windows (uses backslash)
 # Path: always correct on every OS; .read_text() reads in one line
 
 # Check existence before reading
