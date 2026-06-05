@@ -1,7 +1,7 @@
 # Session 00 — Setup
 
 **Status**: ⬜ Not Started
-**Session goal**: `uv run python sessions/session-00/hello.py` prints "ready" and confirms all packages are installed.
+**Session goal**: `uv run python sessions/session-00/hello.py` prints "ready", all packages are installed, and the Jupyter kernel is registered in VS Code.
 
 ---
 
@@ -10,7 +10,7 @@
 | Order | File | What it builds |
 |-------|------|---------------|
 | 1 | Terminal | Install Python 3.12+, uv, VS Code |
-| 2 | `sessions/session-00/hello.py` | First script — confirms environment |
+| 2 | `sessions/session-00/hello.py` | First script — confirms environment and packages |
 
 ---
 
@@ -44,10 +44,17 @@ uv --version   # should print something like "uv 0.5.x"
 ```bash
 cd /Users/ganesh/Documents/GaneshFiles/Python_Refresh
 uv init .
-uv add pydantic pydantic-settings httpx tenacity anyio
+uv add pydantic pydantic-settings httpx tenacity anyio ipykernel
 ```
 
 This creates a `.venv/` folder and a `pyproject.toml`. Every package the course uses is now installed.
+
+Now register the kernel so VS Code can find it for notebooks:
+```bash
+uv run python -m ipykernel install --user --name python-refresh --display-name "Python Refresh (Python 3.12)"
+```
+
+Open any `.ipynb` notebook in VS Code → select kernel → pick **"Python Refresh (Python 3.12)"**.
 
 **Misconception**: You never need to "activate" the virtual environment when using `uv`. Just prefix commands with `uv run`. uv handles the rest automatically.
 

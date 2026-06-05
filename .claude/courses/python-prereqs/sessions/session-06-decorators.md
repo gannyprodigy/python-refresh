@@ -10,16 +10,17 @@
 
 | Order | File | What it builds |
 |-------|------|---------------|
-| 1 | `sessions/session-06/01_decorator_from_scratch.md` | The wrapper pattern → `@` syntax |
-| 2 | `sessions/session-06/02_functools_wraps.md` | Why `functools.wraps` is never optional |
-| 3 | `sessions/session-06/03_decorator_with_args.md` | `@retry(attempts=3)` — the factory pattern |
+| 1 | `sessions/session-06/01_decorator_from_scratch.ipynb` | The wrapper pattern → `@` syntax |
+| 2 | `sessions/session-06/02_functools_wraps.ipynb` | Why `functools.wraps` is never optional |
+| 3 | `sessions/session-06/03_decorator_with_args.ipynb` | `@retry(attempts=3)` — the factory pattern |
+| — | `sessions/session-06/decorators.py` | Final: timing, logging, retry decorators |
 
 ---
 
 ## Segments
 
 ### Segment A — The mental model: functions that wrap functions (~30 min)
-**File**: `01_decorator_from_scratch.md`
+**Notebook**: `01_decorator_from_scratch.ipynb`
 
 **Mental model**: A decorator is a function that takes a function, wraps it with extra behaviour (before or after), and returns the wrapped version. The `@` symbol is syntactic sugar — it's shorthand for "pass this function to that decorator and replace it with the result."
 
@@ -83,7 +84,7 @@ def get_patient(patient_id: str) -> dict:
 ---
 
 ### Segment B — `functools.wraps`: the rule that's never optional (~40 min)
-**File**: `02_functools_wraps.md`
+**Notebook**: `02_functools_wraps.ipynb`
 
 **Mental model**: When you wrap a function, the wrapper replaces it. The original function's name, docstring, and type hints are hidden inside the closure — from the outside world, the wrapper's name and docstring are what callers see. `functools.wraps` copies the original function's metadata onto the wrapper, so it looks and behaves like the original.
 
@@ -155,7 +156,7 @@ def process_workouts(workouts: list[dict]) -> list[dict]:
 ---
 
 ### Segment C — Decorators with arguments: the factory pattern (~30 min)
-**File**: `03_decorator_with_args.md`
+**Notebook**: `03_decorator_with_args.ipynb`
 
 **Mental model**: Sometimes you want to configure a decorator: `@retry(attempts=3)`, `@limiter.limit("10/minute")`, `@cache(ttl=300)`. This requires one extra layer: the decorator factory — a function that *takes the configuration* and *returns a decorator*. Three levels of nesting instead of two.
 

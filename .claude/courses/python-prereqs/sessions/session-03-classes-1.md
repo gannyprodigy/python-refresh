@@ -10,16 +10,17 @@
 
 | Order | File | What it builds |
 |-------|------|---------------|
-| 1 | `sessions/session-03/01_blueprint_and_instance.md` | `__init__`, `self`, attributes, creating instances |
-| 2 | `sessions/session-03/02_methods.md` | Instance methods, method chaining |
-| 3 | `sessions/session-03/03_repr_str.md` | `__repr__`, `__str__`, debuggability |
+| 1 | `sessions/session-03/01_blueprint_and_instance.ipynb` | `__init__`, `self`, attributes, creating instances |
+| 2 | `sessions/session-03/02_methods.ipynb` | Instance methods, method chaining |
+| 3 | `sessions/session-03/03_repr_str.ipynb` | `__repr__`, `__str__`, debuggability |
+| — | `sessions/session-03/classes_1.py` | Final: Patient and WorkoutSet classes |
 
 ---
 
 ## Segments
 
 ### Segment A — Blueprint and Instance: `__init__` and `self` (~35 min)
-**File**: `01_blueprint_and_instance.md`
+**Notebook**: `01_blueprint_and_instance.ipynb`
 
 **Mental model**: A class is a blueprint. An instance is one concrete thing built from that blueprint. You can build many instances from one blueprint — each one has its own data, but they all share the same structure and methods. In AI code, almost everything is a class: a database model is a class, a Pydantic schema is a class, an LLM client is a class, an API response is a class.
 
@@ -68,7 +69,7 @@ class Patient:
 ---
 
 ### Segment B — Instance Methods: giving a class behaviour (~40 min)
-**File**: `02_methods.md`
+**Notebook**: `02_methods.ipynb`
 
 **Mental model**: An instance method is a function defined inside a class that operates on that specific instance's data. It always takes `self` as its first argument. Through `self`, it can read and modify the instance's attributes — and call other methods on the same instance.
 
@@ -127,7 +128,7 @@ print(f"Volume: {s.volume():.0f}kg")                # 400kg
 ---
 
 ### Segment C — `__repr__` and `__str__` (~25 min)
-**File**: `03_repr_str.md`
+**Notebook**: `03_repr_str.ipynb`
 
 **Mental model**: Python has special "dunder" (double-underscore) methods that control how built-in operations work on your objects. Two of the most important: `__repr__` controls what the Python REPL and debugger show when you inspect an object; `__str__` controls what `print()` shows.
 

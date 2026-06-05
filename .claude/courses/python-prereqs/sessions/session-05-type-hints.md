@@ -10,17 +10,18 @@
 
 | Order | File | What it builds |
 |-------|------|---------------|
-| 1 | `sessions/session-05/01_basic_annotations.md` | Variables, functions, return types |
-| 2 | `sessions/session-05/02_union_collections.md` | `str \| None`, `list[T]`, `dict[K,V]`, union types |
-| 3 | `sessions/session-05/03_typeddict_literal.md` | `TypedDict`, `Literal`, when to use each |
-| 4 | `sessions/session-05/04_annotated_final.md` | `Annotated`, `Final`, `ClassVar` |
+| 1 | `sessions/session-05/01_basic_annotations.ipynb` | Variables, functions, return types |
+| 2 | `sessions/session-05/02_union_collections.ipynb` | `str \| None`, `list[T]`, `dict[K,V]`, union types |
+| 3 | `sessions/session-05/03_typeddict_literal.ipynb` | `TypedDict`, `Literal`, when to use each |
+| 4 | `sessions/session-05/04_annotated_final.ipynb` | `Annotated`, `Final`, `ClassVar` |
+| — | `sessions/session-05/type_hints.py` | Final: annotated module with every hint pattern |
 
 ---
 
 ## Segments
 
 ### Segment A — Basic annotations: variables and functions (~30 min)
-**File**: `01_basic_annotations.md`
+**Notebook**: `01_basic_annotations.ipynb`
 
 **Mental model**: Type hints are labels you attach to variables and function signatures. They tell readers, editors, and tools what type to expect. Python itself ignores them at runtime — but your editor uses them for autocomplete and error detection, Pydantic uses them for validation, and FastAPI uses them to generate API documentation.
 
@@ -48,7 +49,7 @@ def send_reminder(patient_id: str, message: str) -> None:
 ---
 
 ### Segment B — Union types, optional fields, and typed collections (~35 min)
-**File**: `02_union_collections.md`
+**Notebook**: `02_union_collections.ipynb`
 
 **Mental model**: Real data is often "one type *or* another." A field might be a string or `None`. A field might accept a string or a list of strings. Python 3.10+ lets you express this with the `|` operator — clean, readable, and what you'll see in every production codebase.
 
@@ -103,7 +104,7 @@ def process_patients(patients: list[Patient]) -> list[dict]: ...
 ---
 
 ### Segment C — TypedDict and Literal (~25 min)
-**File**: `03_typeddict_literal.md`
+**Notebook**: `03_typeddict_literal.ipynb`
 
 **Mental model**: `TypedDict` defines the expected shape of a plain Python dict — with named keys and specific value types. The dict still behaves exactly like a normal dict at runtime; `TypedDict` is purely for the type checker and reader. This is the exact pattern LangGraph uses for agent state — every agent graph starts with a `TypedDict` defining its state schema.
 
@@ -158,7 +159,7 @@ update_status("a123", "confirmed")    # ✅
 ---
 
 ### Segment D — Annotated, Final, ClassVar (~25 min)
-**File**: `04_annotated_final.md`
+**Notebook**: `04_annotated_final.ipynb`
 
 **Mental model**: `Annotated` lets you attach extra metadata to a type hint — not just the type, but additional constraints or documentation that Pydantic and FastAPI can read. `Final` marks a variable that should never be reassigned. `ClassVar` marks a class attribute (shared across all instances, not per-instance).
 

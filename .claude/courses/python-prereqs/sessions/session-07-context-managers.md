@@ -10,16 +10,17 @@
 
 | Order | File | What it builds |
 |-------|------|---------------|
-| 1 | `sessions/session-07/01_with_and_why.md` | The `with` contract and what it guarantees |
-| 2 | `sessions/session-07/02_write_your_own.md` | `__enter__`/`__exit__` and `contextlib.contextmanager` |
-| 3 | `sessions/session-07/03_async_context_managers.md` | `async with` — the version every DB call uses |
+| 1 | `sessions/session-07/01_with_and_why.ipynb` | The `with` contract and what it guarantees |
+| 2 | `sessions/session-07/02_write_your_own.ipynb` | `__enter__`/`__exit__` and `contextlib.contextmanager` |
+| 3 | `sessions/session-07/03_async_context_managers.ipynb` | `async with` — the version every DB call uses |
+| — | `sessions/session-07/context_managers.py` | Final: sync and async context manager patterns |
 
 ---
 
 ## Segments
 
 ### Segment A — What `with` does and the cleanup guarantee (~25 min)
-**File**: `01_with_and_why.md`
+**Notebook**: `01_with_and_why.ipynb`
 
 **Mental model**: A context manager guarantees that cleanup code runs — whether the block inside succeeds, fails with an exception, or is interrupted. Any resource that needs to be "opened then closed" — a file, a database connection, an HTTP client — should live inside a `with` block.
 
@@ -61,7 +62,7 @@ with Session(engine) as session:
 ---
 
 ### Segment B — Writing your own context manager (~35 min)
-**File**: `02_write_your_own.md`
+**Notebook**: `02_write_your_own.ipynb`
 
 **Mental model**: Any class with `__enter__` and `__exit__` methods is a context manager. `__enter__` runs at the start of the `with` block and returns the value that goes into `as result:`. `__exit__` runs at the end — whether the block succeeded or raised an exception — and receives exception information if one occurred.
 
@@ -120,7 +121,7 @@ The pattern: set up → `yield` → teardown. Code before `yield` is `__enter__`
 ---
 
 ### Segment C — `async with`: the async version (~25 min)
-**File**: `03_async_context_managers.md`
+**Notebook**: `03_async_context_managers.ipynb`
 
 **Mental model**: `async with` is the async version of `with`. Instead of `__enter__` and `__exit__`, async context managers define `__aenter__` and `__aexit__`. You must use `async with` for any async resource — using regular `with` on an async context manager raises a `TypeError`.
 

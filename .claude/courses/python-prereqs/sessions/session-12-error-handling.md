@@ -10,17 +10,18 @@
 
 | Order | File | What it builds |
 |-------|------|---------------|
-| 1 | `sessions/session-12/01_try_except_depth.md` | Catching specific exceptions, exception hierarchy |
-| 2 | `sessions/session-12/02_finally_else.md` | `finally`, `else`, clean resource management |
-| 3 | `sessions/session-12/03_custom_exceptions.md` | Domain exception classes |
-| 4 | `sessions/session-12/04_retry_pattern.md` | Manual retry → `tenacity` `@retry` |
+| 1 | `sessions/session-12/01_try_except_depth.ipynb` | Catching specific exceptions, exception hierarchy |
+| 2 | `sessions/session-12/02_finally_else.ipynb` | `finally`, `else`, clean resource management |
+| 3 | `sessions/session-12/03_custom_exceptions.ipynb` | Domain exception classes |
+| 4 | `sessions/session-12/04_retry_pattern.ipynb` | Manual retry → `tenacity` `@retry` |
+| — | `sessions/session-12/error_handling.py` | Final: exception hierarchy + tenacity retry |
 
 ---
 
 ## Segments
 
 ### Segment A — try/except at depth: catching the right exception (~35 min)
-**File**: `sessions/session-12/01_try_except_depth.md`
+**Notebook**: `sessions/session-12/01_try_except_depth.ipynb`
 
 **Mental model**: `try/except` intercepts exceptions before they crash the program — but only if you catch the right exception type. Catching too broadly (bare `except:` or `except Exception:`) hides bugs. Catching too narrowly misses real failure modes. The skill is matching the handler to the failure mode.
 
@@ -117,7 +118,7 @@ except httpx.HTTPStatusError as e:
 ---
 
 ### Segment B — finally and else: completing the pattern (~20 min)
-**File**: `sessions/session-12/02_finally_else.md`
+**Notebook**: `sessions/session-12/02_finally_else.ipynb`
 
 **Mental model**: `try/except` handles the failure case. `else` handles the success case — code that should only run if no exception was raised. `finally` handles the cleanup case — code that always runs, success or failure. Together they create a complete, readable error-handling block.
 
@@ -155,7 +156,7 @@ def process_payment(payment_id: str) -> dict | None:
 ---
 
 ### Segment C — Custom exceptions: domain error classes (~25 min)
-**File**: `sessions/session-12/03_custom_exceptions.md`
+**Notebook**: `sessions/session-12/03_custom_exceptions.ipynb`
 
 **Mental model**: Python's built-in exceptions (`ValueError`, `KeyError`, `RuntimeError`) describe *how* something went wrong — not *what* in your domain failed. Custom exceptions describe the domain failure specifically. `AppointmentNotFoundError` is clearer than `ValueError: appointment not found`. It's also catchable by type — callers can handle `AppointmentNotFoundError` specifically without catching all `ValueError`s.
 
@@ -223,7 +224,7 @@ async def handle_booking_request(date: str, time: str, patient_id: str) -> dict:
 ---
 
 ### Segment D — The retry pattern: manual to tenacity (~30 min)
-**File**: `sessions/session-12/04_retry_pattern.md`
+**Notebook**: `sessions/session-12/04_retry_pattern.ipynb`
 
 **Mental model**: External APIs fail occasionally — network blips, temporary rate limits, momentary service outages. The correct response is to wait briefly and try again, with increasing delay between attempts. This is the retry pattern. You'll build it manually first to understand it, then see how `tenacity`'s `@retry` decorator replaces it in one line.
 

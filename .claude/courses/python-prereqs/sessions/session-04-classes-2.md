@@ -10,16 +10,17 @@
 
 | Order | File | What it builds |
 |-------|------|---------------|
-| 1 | `sessions/session-04/01_inheritance_super.md` | Extending a class, `super()`, method override |
-| 2 | `sessions/session-04/02_classmethod_staticmethod.md` | `@classmethod` and `@staticmethod` |
-| 3 | `sessions/session-04/03_property_dunders.md` | `@property`, `__eq__`, `__len__`, `__contains__` |
+| 1 | `sessions/session-04/01_inheritance_super.ipynb` | Extending a class, `super()`, method override |
+| 2 | `sessions/session-04/02_classmethod_staticmethod.ipynb` | `@classmethod` and `@staticmethod` |
+| 3 | `sessions/session-04/03_property_dunders.ipynb` | `@property`, `__eq__`, `__len__`, `__contains__` |
+| — | `sessions/session-04/classes_2.py` | Final: inheritance, classmethods, dunders |
 
 ---
 
 ## Segments
 
 ### Segment A — Inheritance and `super()` (~45 min)
-**File**: `01_inheritance_super.md`
+**Notebook**: `01_inheritance_super.ipynb`
 
 **Mental model**: Inheritance lets a new class ("child") start with everything an existing class ("parent") already has — all its attributes and methods — and then add or change specific parts. The child doesn't copy the code; it *inherits* it. Any change to the parent is automatically reflected in the child.
 
@@ -83,7 +84,7 @@ class Patient(Person):
 ---
 
 ### Segment B — `@classmethod` and `@staticmethod` (~35 min)
-**File**: `02_classmethod_staticmethod.md`
+**Notebook**: `02_classmethod_staticmethod.ipynb`
 
 **Mental model**: A regular instance method gets `self` (the instance) as its first argument. `@classmethod` gets `cls` (the class itself) instead — useful for creating instances from different input formats. `@staticmethod` gets neither — it's a utility function that lives in the class for organisation, not because it needs instance or class data.
 
@@ -132,7 +133,7 @@ This pattern is used throughout production code — Pydantic's `model_validate()
 ---
 
 ### Segment C — `@property` (~20 min)
-**File**: `03_property_dunders.md` (first half)
+**Notebook**: `03_property_dunders.ipynb` (first half)
 
 **Mental model**: `@property` makes a method look like an attribute — you access it without calling it (no parentheses). Use it for values that are computed from existing attributes but should feel like simple data access. In Pydantic v2, `@computed_field` (Session 09) builds on this pattern.
 
@@ -162,7 +163,7 @@ s.volume          # 400.0 — same pattern
 ---
 
 ### Segment D — Key Dunder Methods: `__eq__`, `__len__`, `__contains__` (~25 min)
-**File**: `03_property_dunders.md` (second half)
+**Notebook**: `03_property_dunders.ipynb` (second half)
 
 **Mental model**: Dunder methods (double-underscore on both sides) are Python's hooks into built-in operations. `==` calls `__eq__`. `len()` calls `__len__`. `in` calls `__contains__`. By defining these, your class works naturally with Python's operators and built-in functions.
 

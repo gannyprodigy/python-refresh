@@ -10,17 +10,18 @@
 
 | Order | File | What it builds |
 |-------|------|---------------|
-| 1 | `sessions/session-08/01_basemodel_fields.md` | `BaseModel`, required vs optional, `Field()` |
-| 2 | `sessions/session-08/02_validation_error.md` | `ValidationError`, error messages, safe parsing |
-| 3 | `sessions/session-08/03_serialisation.md` | `model_dump()`, `model_validate()`, `model_json_schema()` |
-| 4 | `sessions/session-08/04_nested_models.md` | Nested models, `list[Model]`, real production schema |
+| 1 | `sessions/session-08/01_basemodel_fields.ipynb` | `BaseModel`, required vs optional, `Field()` |
+| 2 | `sessions/session-08/02_validation_error.ipynb` | `ValidationError`, error messages, safe parsing |
+| 3 | `sessions/session-08/03_serialisation.ipynb` | `model_dump()`, `model_validate()`, `model_json_schema()` |
+| 4 | `sessions/session-08/04_nested_models.ipynb` | Nested models, `list[Model]`, real production schema |
+| — | `sessions/session-08/pydantic_models.py` | Final: nested StrengthProfile model |
 
 ---
 
 ## Segments
 
 ### Segment A — BaseModel and Field() (~35 min)
-**File**: `01_basemodel_fields.md`
+**Notebook**: `01_basemodel_fields.ipynb`
 
 **Mental model**: Pydantic's `BaseModel` turns type hints into runtime enforcement. You define a class with typed attributes — Pydantic validates that every value matches its declared type when an instance is created. If something doesn't match, you get a clear, structured error instead of a silent wrong value or a cryptic crash three functions later.
 
@@ -73,7 +74,7 @@ ws = WorkoutSet.model_validate(data) # explicit Pydantic method — same result
 ---
 
 ### Segment B — ValidationError: when validation fails (~30 min)
-**File**: `02_validation_error.md`
+**Notebook**: `02_validation_error.ipynb`
 
 **Mental model**: When you pass invalid data to a Pydantic model, it raises a `ValidationError` — not a generic `TypeError` or `ValueError`, but a structured error with a list of exactly which fields failed and why. Catching this specifically lets you return clean, actionable error messages.
 
@@ -133,7 +134,7 @@ Patient(age="abc")    # ValidationError — can't parse "abc" as int ❌
 ---
 
 ### Segment C — Serialisation: getting data out of models (~25 min)
-**File**: `03_serialisation.md`
+**Notebook**: `03_serialisation.ipynb`
 
 **Mental model**: Pydantic models are Python objects — you can't store them directly in a database or send them over HTTP. `model_dump()` converts to a plain Python dict. `model_dump_json()` converts to a JSON string. `model_json_schema()` gives you the JSON Schema — which is what the LLM uses for structured output.
 
@@ -184,7 +185,7 @@ p = Patient.model_validate_json(json_str)
 ---
 
 ### Segment D — Nested models and list[Model] fields (~30 min)
-**File**: `04_nested_models.md`
+**Notebook**: `04_nested_models.ipynb`
 
 **Mental model**: Pydantic models can contain other Pydantic models as fields. A `StrengthProfile` contains a list of `EstimatedOneRM` models and a `MuscleBalance` model. Pydantic validates the entire nested structure — if any nested field is wrong, you get a `ValidationError` with the full path to the problem.
 

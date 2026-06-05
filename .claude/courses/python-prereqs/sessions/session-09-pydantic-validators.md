@@ -10,17 +10,18 @@
 
 | Order | File | What it builds |
 |-------|------|---------------|
-| 1 | `sessions/session-09/01_field_validator.md` | Custom single-field validation |
-| 2 | `sessions/session-09/02_model_validator.md` | Cross-field validation rules |
-| 3 | `sessions/session-09/03_computed_field.md` | Derived values that appear in serialised output |
-| 4 | `sessions/session-09/04_base_settings.md` | All config from `.env` in one class |
+| 1 | `sessions/session-09/01_field_validator.ipynb` | Custom single-field validation |
+| 2 | `sessions/session-09/02_model_validator.ipynb` | Cross-field validation rules |
+| 3 | `sessions/session-09/03_computed_field.ipynb` | Derived values that appear in serialised output |
+| 4 | `sessions/session-09/04_base_settings.ipynb` | All config from `.env` in one class |
+| — | `sessions/session-09/pydantic_validators.py` | Final: validators + BaseSettings config |
 
 ---
 
 ## Segments
 
 ### Segment A — @field_validator: single-field custom rules (~35 min)
-**File**: `sessions/session-09/01_field_validator.md`
+**Notebook**: `sessions/session-09/01_field_validator.ipynb`
 
 **Mental model**: `Field(gt=0)` handles numeric constraints. `@field_validator` handles everything else — business rules that require logic, string format checks, cleaning and normalising incoming data. It runs after Pydantic's built-in type check, so the value is already the right type when your validator receives it.
 
@@ -81,7 +82,7 @@ Patient(name="", phone="abc", weight_kg=-5)
 ---
 
 ### Segment B — @model_validator: cross-field rules (~30 min)
-**File**: `sessions/session-09/02_model_validator.md`
+**Notebook**: `sessions/session-09/02_model_validator.ipynb`
 
 **Mental model**: `@field_validator` validates one field at a time. `@model_validator(mode="after")` runs once the entire model is constructed and gets access to all fields simultaneously. Use it for rules that involve multiple fields — "end time must be after start time", "if payment method is UPI, UPI ID is required."
 
@@ -134,7 +135,7 @@ PaymentRecord(method="cash", amount=500.0)  # upi_id not needed for cash
 ---
 
 ### Segment C — @computed_field: derived values in output (~20 min)
-**File**: `sessions/session-09/03_computed_field.md`
+**Notebook**: `sessions/session-09/03_computed_field.ipynb`
 
 **Mental model**: `@property` creates a computed attribute — but `@property` is invisible to Pydantic's serialiser. `@computed_field` is Pydantic's equivalent: a computed value that *does* appear in `model_dump()`, `model_dump_json()`, and the JSON Schema.
 
@@ -171,7 +172,7 @@ ws.model_dump()
 ---
 
 ### Segment D — BaseSettings: all config from .env (~35 min)
-**File**: `sessions/session-09/04_base_settings.md`
+**Notebook**: `sessions/session-09/04_base_settings.ipynb`
 
 **Mental model**: `BaseSettings` is a Pydantic model where field values come from environment variables (or a `.env` file) instead of function arguments. One class holds all your config. Every field is typed, has a default, and is validated on load. If a required env var is missing, you get a clear `ValidationError` at startup — not a `KeyError` three calls deep when a user triggers a feature.
 

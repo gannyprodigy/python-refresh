@@ -10,15 +10,16 @@
 
 | Order | File | What it builds |
 |-------|------|---------------|
-| 1 | `sessions/session-10/01_enum_strenum.md` | `Enum`, `StrEnum`, when each applies |
-| 2 | `sessions/session-10/02_typeddict.md` | `TypedDict`, `total=False`, LangGraph state |
+| 1 | `sessions/session-10/01_enum_strenum.ipynb` | `Enum`, `StrEnum`, when each applies |
+| 2 | `sessions/session-10/02_typeddict.ipynb` | `TypedDict`, `total=False`, LangGraph state |
+| — | `sessions/session-10/enums_typeddict.py` | Final: StrEnum + TypedDict agent state |
 
 ---
 
 ## Segments
 
 ### Segment A — Enum: named constants with type safety (~35 min)
-**File**: `sessions/session-10/01_enum_strenum.md`
+**Notebook**: `sessions/session-10/01_enum_strenum.ipynb`
 
 **Mental model**: An `Enum` is a class whose members are fixed constants. Instead of checking `if status == "confirmed"` — a string that could be misspelled, autocompleted wrong, or changed in one place but not another — you check `if status == AppointmentStatus.CONFIRMED`. The misspelling becomes a `NameError` immediately at development time, not a silent bug at 3am in production.
 
@@ -122,7 +123,7 @@ You'll see both in production codebases. `StrEnum` (Python 3.11+) is cleaner; `(
 ---
 
 ### Segment B — TypedDict: typed shape for plain dicts (~30 min)
-**File**: `sessions/session-10/02_typeddict.md`
+**Notebook**: `sessions/session-10/02_typeddict.ipynb`
 
 **Mental model**: `TypedDict` describes the expected keys and value types of a plain Python dict. The dict behaves exactly like a normal dict at runtime — no validation, no extra methods. `TypedDict` exists purely for the type checker and for readers — it makes the structure of complex dicts explicit and documentable.
 

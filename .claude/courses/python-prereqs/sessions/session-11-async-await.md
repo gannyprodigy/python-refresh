@@ -10,17 +10,18 @@
 
 | Order | File | What it builds |
 |-------|------|---------------|
-| 1 | `sessions/session-11/01_mental_model.md` | The cooperative waiting model — why async exists |
-| 2 | `sessions/session-11/02_async_def_await.md` | `async def`, `await`, the viral rule, `asyncio.run()` |
-| 3 | `sessions/session-11/03_gather_parallel.md` | `asyncio.gather()` — concurrent coroutines |
-| 4 | `sessions/session-11/04_async_context_iterators.md` | `async with`, `async for`, async generators |
+| 1 | `sessions/session-11/01_mental_model.ipynb` | The cooperative waiting model — why async exists |
+| 2 | `sessions/session-11/02_async_def_await.ipynb` | `async def`, `await`, the viral rule, `asyncio.run()` |
+| 3 | `sessions/session-11/03_gather_parallel.ipynb` | `asyncio.gather()` — concurrent coroutines |
+| 4 | `sessions/session-11/04_async_context_iterators.ipynb` | `async with`, `async for`, async generators |
+| — | `sessions/session-11/async_patterns.py` | Final: async fetch, gather, streaming |
 
 ---
 
 ## Segments
 
 ### Segment A — The mental model: cooperative waiting (~35 min)
-**File**: `sessions/session-11/01_mental_model.md`
+**Notebook**: `sessions/session-11/01_mental_model.ipynb`
 
 **Mental model**: Async lets Python *pause* a function while it's waiting for something slow — a network request, a database query, a file read — and run other work in the meantime. Without async, one slow API call blocks everything. With async, hundreds of API calls can be "in flight" simultaneously, all using a single thread.
 
@@ -67,7 +68,7 @@ Three database calls that each take 1 second: sync = 3 seconds; async = 1 second
 ---
 
 ### Segment B — async def, await, and the viral rule (~40 min)
-**File**: `sessions/session-11/02_async_def_await.md`
+**Notebook**: `sessions/session-11/02_async_def_await.ipynb`
 
 **Mental model**: `async def` marks a function as a *coroutine* — it can be paused. `await` is the pause point — "wait here until this async thing finishes, and let other coroutines run while we wait." The viral rule: if you call an async function, *your* function must also be async. Async spreads upward through the call chain.
 
@@ -133,7 +134,7 @@ def bad():
 ---
 
 ### Segment C — asyncio.gather(): parallel coroutines (~30 min)
-**File**: `sessions/session-11/03_gather_parallel.md`
+**Notebook**: `sessions/session-11/03_gather_parallel.ipynb`
 
 **Mental model**: `asyncio.gather()` starts multiple coroutines simultaneously and waits for all of them to finish. It returns a list of results in the same order as the inputs — regardless of which finished first. This is how you make 10 database calls in parallel instead of sequentially.
 
@@ -193,7 +194,7 @@ for result in results:
 ---
 
 ### Segment D — async for, async with, and async generators (~25 min)
-**File**: `sessions/session-11/04_async_context_iterators.md`
+**Notebook**: `sessions/session-11/04_async_context_iterators.ipynb`
 
 **Mental model**: Just as `async def` and `await` are the async versions of `def` and a function call, `async with` is the async version of `with`, and `async for` is the async version of `for`. They're needed when the resource or iterator itself is async — meaning it yields control back to the event loop between operations.
 

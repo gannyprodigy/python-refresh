@@ -10,17 +10,18 @@
 
 | Order | File | What it builds |
 |-------|------|---------------|
-| 1 | `sessions/session-01/01_string_dict_list.md` | The methods used in every production file |
-| 2 | `sessions/session-01/02_lambda_sorted.md` | Inline functions and key-based sorting |
-| 3 | `sessions/session-01/03_comprehensions.md` | List/dict/generator expressions |
-| 4 | `sessions/session-01/04_builtins_stdlib.md` | `getattr`, `isinstance`, `Path`, `datetime`, `defaultdict` |
+| 1 | `sessions/session-01/01_string_dict_list.ipynb` | The methods used in every production file |
+| 2 | `sessions/session-01/02_lambda_sorted.ipynb` | Inline functions and key-based sorting |
+| 3 | `sessions/session-01/03_comprehensions.ipynb` | List/dict/generator expressions |
+| 4 | `sessions/session-01/04_builtins_stdlib.ipynb` | `getattr`, `isinstance`, `Path`, `datetime`, `defaultdict` |
+| — | `sessions/session-01/fluency.py` | Final: all fluency patterns in one runnable script |
 
 ---
 
 ## Segments
 
 ### Segment A — String, List, Dict: the methods you'll see in every file (~40 min)
-**File**: `01_string_dict_list.md`
+**Notebook**: `01_string_dict_list.ipynb`
 
 **Mental model**: Python's built-in types — strings, lists, dicts — come with methods attached. You call them with dot notation. You'll use a small set of them constantly; the rest rarely. This segment covers exactly the ones that appear in production AI code.
 
@@ -92,7 +93,7 @@ list(record.values())               # ["Riya", 34, ["diabetes"]]
 ---
 
 ### Segment B — Lambda and `sorted()` with `key=` (~35 min)
-**File**: `02_lambda_sorted.md`
+**Notebook**: `02_lambda_sorted.ipynb`
 
 **Mental model**: A lambda is a tiny, inline function written in one expression — no `def`, no name, no `return` statement (the expression result is returned automatically). You'll almost always see it as the `key=` argument inside `sorted()`, telling it *what to sort by*.
 
@@ -144,7 +145,7 @@ sorted(people, key=lambda p: (p["age"], p["name"]))
 ---
 
 ### Segment C — List, Dict, and Generator Comprehensions (~40 min)
-**File**: `03_comprehensions.md`
+**Notebook**: `03_comprehensions.ipynb`
 
 **Mental model**: A comprehension builds a new list (or dict, or set) by applying an expression to every item in an iterable — in one line. It replaces the three-line for-loop-plus-append pattern with a single readable expression. Generator expressions do the same thing but produce values lazily, one at a time, instead of building the whole list in memory first.
 
@@ -227,7 +228,7 @@ Every pattern in Session 01 appears in those 10 lines: `.get()` with defaults, f
 ---
 
 ### Segment D — Key Built-in Functions (~25 min)
-**File**: `04_builtins_stdlib.md` (first half)
+**Notebook**: `04_builtins_stdlib.ipynb` (first half)
 
 Six built-in functions that appear in production AI code, each doing something you'd otherwise write 5 lines for:
 
@@ -265,7 +266,7 @@ for lift, weight in zip(lifts, weights):
 ---
 
 ### Segment E — Standard Library: pathlib, datetime, defaultdict (~20 min)
-**File**: `04_builtins_stdlib.md` (second half)
+**Notebook**: `04_builtins_stdlib.ipynb` (second half)
 
 Three standard library modules used directly in production code — no installation needed.
 

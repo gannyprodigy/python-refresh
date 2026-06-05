@@ -10,16 +10,17 @@
 
 | Order | File | What it builds |
 |-------|------|---------------|
-| 1 | `sessions/session-02/01_def_return_params.md` | def, return, parameters, defaults |
-| 2 | `sessions/session-02/02_args_kwargs.md` | *args, **kwargs, unpacking |
-| 3 | `sessions/session-02/03_first_class_closures.md` | Functions as objects, closures |
+| 1 | `sessions/session-02/01_def_return_params.ipynb` | def, return, parameters, defaults |
+| 2 | `sessions/session-02/02_args_kwargs.ipynb` | *args, **kwargs, unpacking |
+| 3 | `sessions/session-02/03_first_class_closures.ipynb` | Functions as objects, closures |
+| — | `sessions/session-02/functions.py` | Final: functions, closures, first-class patterns |
 
 ---
 
 ## Segments
 
 ### Segment A — def, return, parameters, default values (~25 min)
-**File**: `01_def_return_params.md`
+**Notebook**: `01_def_return_params.ipynb`
 
 **Mental model**: A function is a named, reusable block of code. It takes inputs (parameters), does work, and gives back an output (the return value). The `return` statement is what sends that output back to whoever called the function — without it, every function silently returns `None`.
 
@@ -55,7 +56,7 @@ print(result)                 # None — the caller got nothing back
 ---
 
 ### Segment B — *args and **kwargs (~35 min)
-**File**: `02_args_kwargs.md`
+**Notebook**: `02_args_kwargs.ipynb`
 
 **Mental model**: `*args` collects any number of positional arguments into a tuple. `**kwargs` collects any number of keyword arguments into a dict. Together they make functions that accept flexible, variable inputs — which is exactly how decorator wrappers work (they wrap *any* function, so they need to accept *any* arguments).
 
@@ -108,7 +109,7 @@ retry_call(get_patient, patient_id="p_123")
 ---
 
 ### Segment C — First-class functions: passing functions as values (~40 min)
-**File**: `03_first_class_closures.md` (first half)
+**Notebook**: `03_first_class_closures.ipynb` (first half)
 
 **Mental model**: In Python, a function is an object — just like a string, a number, or a list. You can assign it to a variable, store it in a dict, pass it as an argument to another function, and return it from a function. This is called "first-class functions" and it's the foundation of decorators, callbacks, and tool registries.
 
@@ -151,7 +152,7 @@ result = TOOLS[tool_name](**tool_args)  # calls the function by name
 ---
 
 ### Segment D — Closures: functions that remember their scope (~30 min)
-**File**: `03_first_class_closures.md` (second half)
+**Notebook**: `03_first_class_closures.ipynb` (second half)
 
 **Mental model**: A closure is a function defined inside another function that "closes over" — remembers — variables from the outer function, even after the outer function has finished running. This is exactly what a decorator does: it wraps a function and the wrapper remembers the original function as a closure variable.
 

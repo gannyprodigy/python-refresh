@@ -43,7 +43,7 @@ Progress is tracked in `PROGRESS.md` — segments marked complete when the code 
 
 | Session | Title | Hours | What Clicks |
 |---------|-------|-------|-------------|
-| 00 | Setup | 0.5h | Python 3.12+, uv, VS Code, Jupyter — all running |
+| 00 | Setup | 0.5h | Python 3.12+, uv, VS Code — all running |
 | 01 | Python Fluency | 2.5h | Read any real production Python file without stopping |
 | 02 | Functions | 2.5h | def/return/params → *args/**kwargs → closures → first-class |
 | 03 | Classes Part 1 | 2.5h | `__init__`, `self`, attributes, methods, `__repr__` |
