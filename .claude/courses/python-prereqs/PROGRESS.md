@@ -1,9 +1,9 @@
 # Course Progress — Python for AI Engineers
 
 **Last Updated**: 2026-06-05
-**Current Session**: Session 00 — Setup
+**Current Session**: Session 01 — Python Fluency
 **Current Segment**: Not started
-**Overall Progress**: Not started
+**Overall Progress**: 1/13 sessions complete
 
 ---
 
@@ -11,7 +11,7 @@
 
 | Session | Title | Status | Completed |
 |---------|-------|--------|-----------|
-| **00** | Setup | ⬜ Not Started | — |
+| **00** | Setup | ✅ Complete | 2026-06-05 |
 | **01** | Python Fluency | ⬜ Not Started | — |
 | **02** | Functions | ⬜ Not Started | — |
 | **03** | Classes Part 1 | ⬜ Not Started | — |
@@ -29,12 +29,12 @@
 
 ## Session 00 — Detail
 
-**Status**: ⬜ Not Started
+**Status**: ✅ Complete — 2026-06-05
 
 ### Segments
-- [ ] **A** — Install Python 3.12+, uv, VS Code
-- [ ] **B** — Create project, install packages, launch Jupyter
-- [ ] **C** — Verify environment: `print("ready")` runs in a notebook
+- [x] **A** — Install Python 3.12+, uv, VS Code
+- [x] **B** — Create project, install packages, register kernel
+- [x] **C** — Verify environment: `hello.py` prints "ready", all packages confirmed
 
 ---
 

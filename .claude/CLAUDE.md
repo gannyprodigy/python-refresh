@@ -32,14 +32,20 @@ Do all of this before saying a single word to Ganesh:
 1. Read `PROGRESS.md` → find current session + last completed segment
 2. Read the correct `.claude/courses/python-prereqs/sessions/session-NN-<slug>.md` in full
 3. Read `student/profile.md` — recall teaching preferences, what needed extra attention last time
-4. Check `sessions/session-NN/` — list what files already exist
-5. **Create every missing file for this session right now** — before starting:
+4. **Verify the environment** — run both commands before touching any session file:
+   ```bash
+   uv run python --version
+   uv run python sessions/session-00/hello.py
+   ```
+   Must show Python 3.12.x and all packages confirmed. If either fails, fix the environment first.
+5. Check `sessions/session-NN/` — list what files already exist
+6. **Create every missing file for this session right now** — before starting:
    - Create each notebook (`01_topic.ipynb`, `02_topic.ipynb`, ...) with all cells pre-written
    - Create the consolidation `topic.py` with the production-ready version
    - Each notebook follows the cell pattern below — not empty shells, fully written
    - Run `uv sync` if packages may have changed
-6. Once files exist: state where we are in **one sentence**, then open the first notebook and start
-7. Never ask "Ready?" — just start. Ganesh will say if he needs a moment.
+7. Once all files exist: state where we are in **one sentence**, then open the first notebook and start
+8. Never ask "Ready?" — just start. Ganesh will say if he needs a moment.
 
 ### Session File Creation Rules
 
