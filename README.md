@@ -26,7 +26,7 @@ Python prerequisites course — everything you need to read and write production
 
 Full session guides are in `.claude/courses/python-prereqs/sessions/`.
 
-After each session, copy `.claude/courses/python-prereqs/student/session-notes-template.md` and fill it in.
+After each session, Claude writes notes to `.claude/courses/python-prereqs/session-notes/`.
 
 ## Setup
 
